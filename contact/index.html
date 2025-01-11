@@ -8,9 +8,20 @@
 <body>
     <h1>My Contacts</h1>
     <nav>
-        <a href="../index.html">Main Page</a>
-        <a href="projects/index.html">Projects Page</a>
-        <a href="https://github.com/ethanlam101" target="_blank">Github Profile</a>
+        <ul>
+        <li><a href="../index.html">Main Page</a><br></li>
+        <li><a href="../projects/index.html">Projects Page</a><br></li> 
+        <li><a href="https://github.com/ethanlam101" target="_blank">Github Profile</a><br></li>
+        </ul>
     </nav>
+
+    <br>
+
+    <form action="mailto:e7lam@ucsd.edu" method="post" enctype="text/plain">
+        <label>Email:<input name="email" type="email"></label><br><br>
+        <label>Subject:<input name="subject"></label><br><br>
+        <label>Text:<textarea name="body"></textarea></label><br><br>
+        <input type="submit">
+    </form>
 </body>
 </html>
