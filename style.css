@@ -150,7 +150,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+.projects a:hover {
   text-decoration: underline;
 }
 
