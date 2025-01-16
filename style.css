@@ -1,6 +1,160 @@
+:root {
+  --color-accent: oklch(50% 15% 150)
+}
+
 body {
     /* Set line height to 1.5 times the font size
          and use the OS’s UI font as the website font
        */
     font: 100%/1.5 system-ui;
+    max-width: 100ch;
+    margin: 0 auto;
+    padding: 25px 50px 75px 100px;
+
+    accent-color: var(--color-accent);
   }
+
+p {
+  max-width: 100ch;
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+nav a:hover {
+  color: var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+  background-color: oklch(from var(--color-accent) 95% 5% h)
+}
+
+nav a.current {
+  color: var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+  max-width: 400px;
+  margin: 2em auto;
+}
+
+label {
+  display: grid;
+  grid-template-columns: subgrid;
+  align-self: center;
+}
+
+input {
+  width: 100%;
+}
+
+button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 0.5em 1em;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+}
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+}
+
+h2 {
+  margin: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header hr {
+  border: 0;
+  height: 2px;
+  background: #ddd;
+  margin: 10px 0;
+}
+
+header p a {
+  color: #20547f;
+  text-decoration: none;
+}
+
+header p a:hover {
+  text-decoration: underline;
+}
+
+section p, section ul {
+  margin-left: 20px;
+}
+
+article h3 {
+  font-size: 1.2em;
+  color: #333;
+}
+
+article p {
+  font-size: 0.9em;
+  color: #666;
+}
+
+article ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #20547f;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
