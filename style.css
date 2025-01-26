@@ -48,19 +48,16 @@ nav a {
   color: CanvasText;
   text-align: center;
   padding: 0.5em;
-  margin-bottom: 1em;
 }
 
 nav a:hover {
-  color: var(--color-accent);
-  border-bottom: 5px solid var(--color-accent);
-  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  border-bottom: 3px solid var(--border-color, oklch(50% 10% 200 / 40%));
+  background-color: oklch(70% 0.04 200 / 40%);
 }
 
 nav a.current {
-  color: var(--color-accent);
   font-weight: bold;
-  border-bottom: 5px solid var(--border-color, oklch(50% 10% 200 / 40%));
+  border-bottom: 3px solid var(--border-color, oklch(50% 10% 200 / 40%));
 }
 
 /* Underline effect for the current page */
