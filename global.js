@@ -131,8 +131,13 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
         article.innerHTML = `
             <${headingTag}>${project.title}</${headingTag}>
             <img src="${project.image || 'default.png'}" alt="${project.title}">
-            <p>${project.description || 'No description available.'}</p>
+
+            <div class="project-details">
+              <p>${project.description || 'No description available.'}</p>
+              <p class="project-year">C. ${project.year}</p>
+            </div>
         `;
+
         article.classList.add("centered-content");
 
         containerElement.appendChild(article);
