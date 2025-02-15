@@ -89,15 +89,10 @@ function renderPieChart(projectsGiven) {
       let i = newData.indexOf(d);
       selectedIndex = selectedIndex === i ? -1 : i; // Toggle selection
 
-      if (selectedIndex === -1) {
-        renderProjects(projectsGiven, projectsContainer, 'h2');
-      } else {
-        let selectedYear = newData[selectedIndex].label;
-        let filteredProjects = projectsGiven.filter(proj => proj.year === selectedYear);
-        renderProjects(filteredProjects, projectsContainer, 'h2');
-      }
+      // Update slice colors dynamically instead of re-rendering everything
+      slices.attr('fill', (d, i) => (i === selectedIndex ? "oklch(60% 45% 0)" : colors(i)));
 
-      renderPieChart(projectsGiven); // Re-render to apply selection
+      renderProjects(selectedIndex === -1 ? projectsGiven : projectsGiven.filter(proj => proj.year === newData[selectedIndex].label), projectsContainer, 'h2');
     });
 }
 
