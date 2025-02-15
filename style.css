@@ -354,3 +354,39 @@ dl.info[hidden]:not(:hover, :focus-within) {
 circle.selected {
   fill: #ff6b6b;
 }
+
+#chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#chart {
+  position: relative;
+  width: 800px; /* Set the width for the graph */
+  height: 500px; /* Set the height for the graph */
+}
+
+#commit-tooltip {
+  position: left;
+  display: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  pointer-events: none;  /* Avoid interfering with other interactions */
+}
+
+#selection-count,
+#language-breakdown,
+#stats {
+  margin-top: 20px;
+}
+
+#language-breakdown {
+  margin-top: 10px;
+}
+
+#selection-count {
+  margin-top: 10px;
+}

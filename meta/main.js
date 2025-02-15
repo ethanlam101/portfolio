@@ -115,9 +115,10 @@ function createScatterplot() {
   const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
 
   const svg = d3.select('#chart')
-      .append('svg')
-      .attr('viewBox', `0 0 ${width} ${height}`)
-      .style('overflow', 'visible');
+    .append('svg')
+    .attr('width', width)  // Make SVG larger
+    .attr('height', height)  // Expand SVG
+    .style('overflow', 'visible');
 
   const dots = svg.append('g').attr('class', 'dots');
 
@@ -183,7 +184,7 @@ function updateTooltipContent(commit) {
 
 function updateTooltipVisibility(isVisible) {
     const tooltip = document.getElementById('commit-tooltip');
-    tooltip.hidden = !isVisible;
+    tooltip.classList.toggle('show', isVisible);
 }
 
 function updateTooltipPosition(event) {

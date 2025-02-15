@@ -16,25 +16,18 @@
 
     <h2>Commits by time of day</h2>
 
-    <div id="chart"></div>
-
-    <p id="selection-count">No commits selected</p>
-    
-    <dl id="language-breakdown" class="stats"></dl>
-
-    <dl id="commit-tooltip" class="info tooltip">
-        <dt>Commit</dt>
-        <dd>
-          <a href="" id="commit-link" target="_blank"></a>
-        </dd>
+    <div id="chart-container" style="position: relative;">
+        <div id="chart"></div>  <!-- This is where the graph will go -->
+        <p id="selection-count">No commits selected</p>
+        <dl id="language-breakdown" class="stats"></dl>
       
-        <dt>Date</dt>
-        <dd id="commit-date"></dd>
-      
-        <!-- Add: Time, author, lines edited -->
-    </dl>
-    
-    <div id="stats"></div>
+        <dl id="commit-tooltip" class="info tooltip">
+          <dt>Commit</dt>
+          <dd><a href="" id="commit-link" target="_blank"></a></dd>
+          <dt>Date</dt>
+          <dd id="commit-date"></dd>
+        </dl>
+      </div>
 
 </body>
 </html>
