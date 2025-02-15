@@ -390,3 +390,29 @@ circle.selected {
 #selection-count {
   margin-top: 10px;
 }
+
+#summary {
+  font-family: Arial, sans-serif;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+}
+
+.stats-grid div {
+  text-align: center;
+}
+
+.summary h3 {
+  font-size: 12px;
+  font-weight: normal;
+  color: gray;
+}
+
+.summary p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0;
+}

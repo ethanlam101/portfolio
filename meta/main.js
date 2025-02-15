@@ -63,38 +63,15 @@ function displayStats() {
   dl.append('dd').text(commits.length);
 }
 
-function calculateStats() {
-    // 1️⃣ Number of files in the codebase
-    const numFiles = new Set(data.map(d => d.file)).size;
-  
-    // 2️⃣ Maximum file length (in lines) & Longest file
-    const fileGroups = d3.groups(data, d => d.file);
-    const longestFile = fileGroups.reduce((max, [file, lines]) => 
-      lines.length > max.length ? { file, length: lines.length } : max, 
-      { file: null, length: 0 }
-    );
-  
-    // 3️⃣ Average line length (in characters)
-    const totalLineLength = data.reduce((sum, d) => sum + d.length, 0);
-    const avgLineLength = totalLineLength / data.length || 0;
-  
-    // 4️⃣ Time of day most work is done (morning, afternoon, evening, night)
-    const timeCategories = { morning: 0, afternoon: 0, evening: 0, night: 0 };
-    data.forEach(d => {
-      const hour = new Date(d.datetime).getHours();
-      if (hour >= 6 && hour < 12) timeCategories.morning++;
-      else if (hour >= 12 && hour < 18) timeCategories.afternoon++;
-      else if (hour >= 18 && hour < 24) timeCategories.evening++;
-      else timeCategories.night++;
-    });
-    const mostWorkTime = Object.entries(timeCategories).reduce((max, entry) => 
-      entry[1] > max[1] ? entry : max, ["none", 0])[0];
-  
-    console.log("📂 Number of Files:", numFiles);
-    console.log("📏 Longest File:", longestFile.file, `(${longestFile.length} lines)`);
-    console.log("🔠 Average Line Length:", avgLineLength.toFixed(2), "characters");
-    console.log("⏳ Most Work Done During:", mostWorkTime);
-  }
+function displaySummaryStats() {
+  document.getElementById("commit-count").textContent = commits.length;
+  document.getElementById("file-count").textContent = new Set(data.map(d => d.file)).size;
+  document.getElementById("total-loc").textContent = data.length;
+  document.getElementById("max-depth").textContent = Math.max(...data.map(d => d.depth), 0);
+  document.getElementById("longest-line").textContent = Math.max(...data.map(d => d.length), 0);
+  document.getElementById("max-lines").textContent = d3.groups(data, d => d.file)
+    .reduce((max, [_, lines]) => Math.max(max, lines.length), 0);
+}
 
 function createScatterplot() {
   const width = 800;
@@ -292,6 +269,6 @@ function updateLanguageBreakdown() {
 document.addEventListener('DOMContentLoaded', async () => {
     await loadData();
     createScatterplot();
-    calculateStats();
+    displaySummaryStats();
 });
 
