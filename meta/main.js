@@ -151,7 +151,7 @@ function updateTooltipContent(commit) {
     const date = document.getElementById('commit-date');
   
     if (Object.keys(commit).length === 0) return;
-  
+    console.log("Hovered commit:", commit);
     link.href = commit.url;
     link.textContent = commit.id;
     date.textContent = commit.datetime?.toLocaleString('en', {

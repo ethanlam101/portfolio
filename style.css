@@ -416,3 +416,16 @@ circle.selected {
   font-weight: bold;
   margin: 5px 0;
 }
+
+.tooltip {
+  position: absolute;
+  background: white;
+  padding: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.tooltip.show {
+  display: block;
+}
