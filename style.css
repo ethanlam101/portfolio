@@ -680,7 +680,7 @@ circle.selected {
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-  background: #f8f9fa; /* Light gray background */
+  background: var(--color-section-bg); /* Light gray background */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
