@@ -374,12 +374,12 @@ function displayStats() {
     const summary = statsDiv.append("div").attr("class", "summary-container");
   
     // ✅ Get calculated statistics
-    const totalCommits = commits.length;
-    const totalFiles = d3.groups(data, (d) => d.file).length;
-    const totalLOC = d3.sum(data, (d) => d.line);
-    const maxDepth = d3.max(data, (d) => d.depth);
-    const longestLine = d3.max(data, (d) => d.length);
-    const maxLines = d3.max(commits, (d) => d.totalLines);
+    const totalCommits = filteredCommits.length;
+    const totalFiles = new Set(filteredLines.map(d => d.file)).size;
+    const totalLOC = d3.sum(filteredLines, d => d.line);
+    const maxDepth = d3.max(filteredLines, d => d.depth) || 0;
+    const longestLine = d3.max(filteredLines, d => d.length) || 0;
+    const maxLines = d3.max(filteredCommits, d => d.totalLines) || 0;
   
     // ✅ Define Summary Stats
     const summaryStats = [
@@ -670,7 +670,7 @@ function isCommitSelected(commit) {
 
   function updateFilteredData() {
     filteredCommits = commits.filter(d => d.datetime <= commitMaxTime);
-    filteredLines = data.filter(d => d.datetime <= commitMaxTime);
+    filteredLines = filteredCommits.flatMap(commit => commit.lines || []);
   }
 
   function updateXScaleDomain() {
