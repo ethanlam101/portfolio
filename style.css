@@ -320,6 +320,11 @@ circle {
   transition: 200ms;
   transform-origin: center;
   transform-box: fill-box;
+
+  @starting-style {
+    r: 0;
+  }
+  
 }
 
 circle:hover {
@@ -384,7 +389,32 @@ circle.selected {
 }
 
 #language-breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* Adjust spacing between languages */
   margin-top: 10px;
+  font-family: Arial, sans-serif;
+}
+
+#language-breakdown dt {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+
+#language-breakdown dd {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+#language-breakdown dd span {
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  color: gray;
 }
 
 #selection-count {
@@ -418,14 +448,280 @@ circle.selected {
 }
 
 .tooltip {
-  position: absolute;
-  background: white;
-  padding: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  display: none;
+  position: absolute; /* Change from fixed to absolute */
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  visibility: hidden; /* Default to hidden */
+  pointer-events: none; /* Prevent interference */
+  transition: opacity 0.2s ease-in-out;
 }
 
 .tooltip.show {
   display: block;
+}
+
+.profile-stats {
+  background-color: var(--color-section-bg); /* Matches section background */
+  color: var(--color-text);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px var(--color-section-shadow);
+  font-family: Arial, sans-serif;
+  border: 1px solid var(--color-nav-border);
+}
+
+/* Styling for the <dl> (Definition List) */
+.profile-stats dl {
+  display: grid;
+  grid-template-columns: auto auto; /* Two-column layout */
+  gap: 8px 16px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style for Labels (dt) */
+.profile-stats dt {
+  font-weight: bold;
+  color: var(--color-text); /* Adjust to theme text color */
+  text-align: right;
+}
+
+/* Style for Values (dd) */
+.profile-stats dd {
+  margin: 0;
+  color: var(--color-accent); /* Use the accent color for values */
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Add a border-bottom between rows */
+.profile-stats dt, .profile-stats dd {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-nav-border);
+}
+
+/* Remove border-bottom for last row */
+.profile-stats dt:last-of-type, .profile-stats dd:last-of-type {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .profile-stats {
+      width: 90%;
+      padding: 15px;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .projects article {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  section {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  #skills ul {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  article li {
+    font-size: 0.9rem;
+  }
+}
+
+/* Make the dl container a grid if needed */
+.files {
+  display: grid;
+  gap: 1em;
+}
+
+/* Each file container (the immediate children of .files) */
+.files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+/* Positioning dt and dd via subgrid */
+.files dt {
+  grid-column: 1;
+}
+
+.files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+/* Style for each unit (line) */
+.line {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+:global(body) {
+  max-width: min(120ch, 80vw);
+}
+
+#scroll-container {
+  position: relative;
+  width: auto;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+#spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none; /* transparent */
+  pointer-events: none;
+}
+
+#items-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.item {
+  padding: 10px;
+  width: 100%;
+  position: absolute;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border-bottom: 2px solid #eee;
+}
+
+#file-visualization-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Align items at the top */
+}
+
+/* Style the left side visualization */
+#unit-visualization {
+  flex: 1;
+  /* Add any custom styling for your unit visualization */
+}
+
+/* Style the new scrolly container on the right */
+#file-scroll-container {
+  flex: 1;
+  position: relative;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+}
+
+/* The spacer fills the overall scrollable height */
+#file-spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none;
+  pointer-events: none;
+}
+
+/* The items container where each file narrative is rendered */
+#file-items-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Style each file narrative item */
+.file-item {
+  /* Use absolute positioning so that we can place items at calculated "top" values */
+  position: absolute;
+  width: 100%;
+  padding: 10px;
+  margin: 0;  /* Avoid horizontal margins to use full width */
+  box-sizing: border-box;
+  border-bottom: 2px solid #eee;
+}
+
+/* Summary Container */
+.summary-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: #f8f9fa; /* Light gray background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+/* Individual Summary Boxes */
+.summary-box {
+  display: flex;  /* ✅ Ensures content alignment */
+  flex-direction: column;
+  align-items: center;  /* ✅ Centers content */
+  justify-content: center;  /* ✅ Vertically centers content */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  min-width: 140px;
+  min-height: 100px;  /* ✅ Ensures uniform height */
+}
+
+/* Hover Effect */
+.summary-box:hover {
+  transform: scale(1.05);
+}
+
+/* Labels */
+.summary-box dt {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6c757d; /* Subtle gray */
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+/* Values */
+.summary-box dd {
+  font-size: 24px;
+  font-weight: bold;
+  color: #343a40; /* Dark contrast */
+  margin: 0;
 }

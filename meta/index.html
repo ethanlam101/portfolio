@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="../global.js" type="module"></script>
-    <script src="main.js" type="module"></script>
+
 </head>
 <body>
 
@@ -14,52 +13,59 @@
     
     <p>This page includes stats about the code of this website.</p>
 
+    <div id="commit-filter" style="display: flex; align-items: baseline;">
+      <label for="commit-progress">Show commits until:</label>
+      <input type="range" id="commit-progress" min="0" max="100" value="100" />
+      <time id="selectedTime" style="margin-left: auto;"></time>
+    </div>
+
+    <div id="stats"></div>
+
     <h2>Commits by time of day</h2>
-
-    <div id="chart-container" style="position: relative;">
-        <div id="chart"></div>  <!-- This is where the graph will go -->
-        <p id="selection-count">No commits selected</p>
-        <dl id="language-breakdown" class="stats"></dl>
-      
-        <dl id="commit-tooltip" class="info tooltip">
-          <dt>Commit</dt>
-          <dd><a href="" id="commit-link" target="_blank"></a></dd>
-          <dt>Date</dt>
-          <dd id="commit-date"></dd>
-        </dl>
+    
+    <div id="chart"></div>
+    <div id="file-visualization-container">
+      <!-- Left: Unit visualization (e.g., a chart or graphic) -->
+      <div id="unit-visualization">
+          <dl class="files"></dl>
+      </div>
+    
+      <!-- Right: New scrolly for file sizes -->
+      <div id="file-scroll-container">
+        <div id="file-spacer"></div>
+        <div id="file-items-container"></div>
+      </div>
     </div>
 
-    <div id="summary">
-        <h2>Summary</h2>
-        <div class="stats-grid">
-          <div>
-            <h3>COMMITS</h3>
-            <p id="commit-count">0</p>
-          </div>
-          <div>
-            <h3>FILES</h3>
-            <p id="file-count">0</p>
-          </div>
-          <div>
-            <h3>TOTAL LOC</h3>
-            <p id="total-loc">0</p>
-          </div>
-          <div>
-            <h3>MAX DEPTH</h3>
-            <p id="max-depth">0</p>
-          </div>
-          <div>
-            <h3>LONGEST LINE</h3>
-            <p id="longest-line">0</p>
-          </div>
-          <div>
-            <h3>MAX LINES</h3>
-            <p id="max-lines">0</p>
-          </div>
-        </div>
+    <div id="scroll-container">
+      <div id="spacer"></div>
+      <div id="items-container"></div>
     </div>
 
 
+    <!-- Tooltip for Commit Details -->
+    <dl id="commit-tooltip" class="info tooltip" style="visibility: hidden;">
+      <dt>Commit</dt>
+      <dd><a href="" id="commit-link" target="_blank"></a></dd>
+
+      <dt>Date</dt>
+      <dd id="commit-date"></dd>
+
+      <dt>Time</dt>
+      <dd id="commit-time"></dd>
+
+      <dt>Author</dt>
+      <dd id="commit-author"></dd>
+
+      <dt>Lines Edited</dt>
+      <dd id="commit-lines"></dd>
+    </dl>
+
+    <p id="selection-count">No commits selected</p>
+    <dl id="language-breakdown" class="stats"></dl>
+
+    <script src="../global.js" type="module"></script>
+    <script src="main.js" type="module"></script>
 
 </body>
 </html>
